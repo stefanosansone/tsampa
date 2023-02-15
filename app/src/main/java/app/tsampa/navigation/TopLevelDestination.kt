@@ -13,6 +13,7 @@ data class TopLevelDestination(
 
 object Route {
     const val DIARY = "Diary"
+    const val GOALS = "Goals"
     const val NUTRITION = "Nutrition"
     const val RECIPES = "Recipes"
     const val MORE = "More"

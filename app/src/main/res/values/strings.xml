@@ -3,4 +3,8 @@
     <string name="diary">Diary</string>
     <string name="recipes">Recipes</string>
     <string name="more">More</string>
+    <string name="goals">Goals</string>
+    <string name="carbohydrates">carbohydrates</string>
+    <string name="protein">protein</string>
+    <string name="fat">fat</string>
 </resources>
