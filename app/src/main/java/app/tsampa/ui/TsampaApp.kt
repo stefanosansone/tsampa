@@ -6,9 +6,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DonutLarge
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.*
+import androidx.compose.material3.ScaffoldDefaults.contentWindowInsets
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
@@ -58,9 +61,6 @@ fun TsampaApp() {
     }
 
     Scaffold(
-        topBar = {
-            TsampaTopBar(currentDestination, navController)
-        },
         contentWindowInsets = scaffoldInsets,
         bottomBar = {
             TsampaBottomBar(
@@ -79,32 +79,6 @@ fun TsampaApp() {
             TsampaNavHost(navController = navController)
         }
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun TsampaTopBar(
-    title: String,
-    navController: NavController
-) {
-    TopAppBar(title = { Text(title) }, actions = {
-        IconButton(
-            onClick = { navController.navigate(Route.NUTRITION) }
-        ){
-            Icon(
-                imageVector = Icons.Default.DonutLarge,
-                contentDescription = "Nutrition"
-            )
-        }
-        IconButton(
-            onClick = {}
-        ) {
-            Icon(
-                imageVector = Icons.Default.MoreVert,
-                contentDescription = "Nutrition"
-            )
-        }
-    })
 }
 
 @Composable

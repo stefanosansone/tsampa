@@ -22,7 +22,7 @@ fun TsampaNavHost(
         modifier = modifier,
     ) {
         composable(Route.DIARY) {
-            DiaryScreen()
+            DiaryScreen(navController)
         }
         composable(Route.RECIPES) {
             RecipesScreen()
