@@ -50,6 +50,9 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
 
+    // Datastore
+    implementation(libs.androidx.datastore.preferences)
+
     // Compose
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)

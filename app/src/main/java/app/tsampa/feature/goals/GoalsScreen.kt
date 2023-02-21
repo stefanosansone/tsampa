@@ -44,11 +44,9 @@ import app.tsampa.utils.capitalize
 internal fun GoalsScreen(
     navController: NavController
 ) {
-    Scaffold(
-        topBar = {
-            GoalsScreenTopBar(navController)
-        }
-    ) { paddingValues ->
+    Scaffold(topBar = {
+        GoalsScreenTopBar(navController)
+    }) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -67,9 +65,8 @@ internal fun GoalsScreen(
 
 @Composable
 private fun MacroRow(
-    macroName: String,
-    macroValue: String
-){
+    macroName: String, macroValue: String
+) {
     val openDialog = remember { mutableStateOf(false) }
 
     if (openDialog.value) {
@@ -103,35 +100,28 @@ private fun MacroRow(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun MacroDialog(
-    macro: String,
-    setOpenDialog: (Boolean) -> Unit
+    macro: String, setOpenDialog: (Boolean) -> Unit
 ) {
     var test by remember { mutableStateOf("") }
 
-    AlertDialog(
-        onDismissRequest = { setOpenDialog(false) },
-        title = {
-            Text(text = "${macro.capitalize()} Goal" )
-        },
-        text = {
-            OutlinedTextField(
-                value = test,
-                onValueChange = { test = it },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-            )
-        },
-        confirmButton = {
-            TextButton(onClick = { setOpenDialog(false) }){
-                Text(text = "Save")
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = { setOpenDialog(false) }){
-                Text(text = "Cancel")
-            }
+    AlertDialog(onDismissRequest = { setOpenDialog(false) }, title = {
+        Text(text = "${macro.capitalize()} Goal")
+    }, text = {
+        OutlinedTextField(
+            value = test,
+            onValueChange = { test = it.take(4) },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+    }, confirmButton = {
+        TextButton(onClick = { setOpenDialog(false) }) {
+            Text(text = "Save")
         }
-    )
+    }, dismissButton = {
+        TextButton(onClick = { setOpenDialog(false) }) {
+            Text(text = "Cancel")
+        }
+    })
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -139,14 +129,11 @@ private fun MacroDialog(
 private fun GoalsScreenTopBar(
     navController: NavController
 ) {
-    TopAppBar(
-        title = { Text(Route.GOALS) },
-        navigationIcon = {
-            IconButton(onClick = { navController.popBackStack() }){
-                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
-            }
+    TopAppBar(title = { Text(Route.GOALS) }, navigationIcon = {
+        IconButton(onClick = { navController.popBackStack() }) {
+            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
         }
-    )
+    })
 }
 
 @Preview(showBackground = true)
